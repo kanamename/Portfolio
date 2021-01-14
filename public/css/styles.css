@@ -1,0 +1,53 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css?family=Caveat');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Lato', 'Noto Sans JP', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+
+body {
+  background-color: #f4f7f8;
+  padding-top: 70px;
+}
+
+/* ナビバー */
+.navbar {
+  padding: 1% 10%;
+  font-size: 18px;
+}
+
+.navbar-brand {
+  font-family: Caveat;
+}
+
+/* ショップ画像 */
+.show-shop-img {
+  width: 70%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.show-shop-title{
+	position: relative;
+	overflow: hidden;
+	padding-bottom: .3em;
+}
+.show-shop-title::before,
+.show-shop-title::after{
+	content: "";
+	position: absolute;
+	bottom: 0;
+}
+.show-shop-title:before{
+	border-bottom: 4px solid #3d3b3b;
+	width: 100%;
+}
+.show-shop-title:after{
+	border-bottom: 4px solid #817a7a;
+	width: 100%;
+}

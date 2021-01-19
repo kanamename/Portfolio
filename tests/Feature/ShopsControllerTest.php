@@ -18,10 +18,10 @@ class ShopsControllerTest extends TestCase
     {
         // ショップ詳細ページへ遷移できるか
         $response = $this
-            ->get(route('search.1'));
+            ->get(route('show', ['id' => 1]));
 
         $response->assertStatus(200)
             ->assertViewIs('shops.show')
-            ->assertSee('価格帯');
+            ->assertSee('吾亦紅');
     }
 }

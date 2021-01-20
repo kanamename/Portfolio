@@ -21,6 +21,11 @@ class Shop extends Model
     return $this->belongsToMany('App\User', 'favorites', 'user_id', 'shop_id');
   }
   
+  // レビューテーブルとのリレーション定義
+  public function reviews() {
+    return $this->hasMany('App\ReviewShop', 'review_shop', 'shop_id', 'review_id');
+  }
+  
   //  ショップにfavoriteが付いているかの判定
   //  true:favoriteがついてる false:favoriteがついてない
   public function favorites()

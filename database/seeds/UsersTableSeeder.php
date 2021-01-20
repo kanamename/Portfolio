@@ -13,9 +13,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        //一括削除
-        User::truncate();
-
         //データを追加
         User::create([
             'name' => '蛯名 虹太',

@@ -18,14 +18,14 @@ class FavoritesTableSeeder extends Seeder
         // データのクリア
         DB::table('favorites')->truncate();
 
-        // shopsテーブルからidを取得
+        // usersテーブルからidを取得
         $users = User::get();
 
-        // brandsテーブルの複数IDとshopテーブルを紐づけ
+        // shopsテーブルの複数IDとusersテーブルを紐づけ
         foreach ($users as $user) {
-            // brandsテーブルからidをランダム(5～10件)で取得
+            // shopsテーブルからidをランダム(0～10件)で取得
             $shop_ids = Shop::inRandomOrder()->take(rand(0, 10))->get('id');
-            // shopsテーブルへ紐づけ
+            // usersテーブルへ紐づけ
             $user->shops()->sync($shop_ids);
         }
     }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Shop;
 use App\Brand;
 use App\BrandShop;
+use App\ReviewShop;
 
 class ShopsController extends Controller
 {
@@ -40,14 +42,20 @@ class ShopsController extends Controller
 
     public function show(string $id)
     {
-        // shopsテーブルからショップIDに紐づくレコードを取得
+        // shopsテーブルからショップIDと一致するレコードを取得
         $shop_data = Shop::findOrFail($id);
 
-        // brandsテーブルからショップIDに紐づくレコードを取得
+        $shop_reviews = ReviewShop::where('shop_id', $id)->get();
+
+        // brandsテーブルからショップIDと一致するレコードを取得
         $brands = Shop::find($id)->brands;
         // ブランド名をカンマ区切りにする
         $brands = $brands->implode('brand_name', ', ');
 
-        return view('shops.show', ['shop_data' => $shop_data, 'brands' => $brands]);
+        return view('shops.show',[
+             'shop_data' => $shop_data,
+             'brands' => $brands,
+             'shop_reviews' => $shop_reviews
+        ]);
     }
 }

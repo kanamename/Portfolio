@@ -52,7 +52,7 @@
     </div>
   </div>
 
-  <div class="my-4">
+  <div class="mb-5">
     <!-- ログインしているか -->
     @if( Auth::check() )
       <!-- お気に入りしているか -->
@@ -68,6 +68,23 @@
       <span class="badge badge-light">×{{ $shop_data->favorites->count() }}人</span></a>
       <span style="color:red;">お気に入りにはログインが必要です。</span>
     @endif
+  </div>
+
+  <div class="shop-review my-5">
+    <h2 class="show-shop-title">ショップレビュー</h2>
+    <div class="p-2">
+      <h5>総合評価</h5>
+      <div class="pt-3 pl-3" style="border-style:solid; border-color:#817a7a; border-width:2px;">
+        @foreach($shop_reviews as $shop_review)
+          <div class="mb-3">
+            <p class="m-0">投稿日：<span>{{ $shop_review->created_at->format('Y年m月d日') }}</span></p>
+            <p class="m-0">投稿者：<span>{{ $shop_review->users->name }}</span>さん</p>
+            <p class="m-0">評価：<span>{{ $shop_review->stars }}</span></p>
+            <p class="m-0">コメント：<span>{{ $shop_review->comment }}</span></p>
+          </div>
+        @endforeach
+      </div>
+    </div>
   </div>  
 </div>
 @endsection

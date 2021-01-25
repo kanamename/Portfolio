@@ -11,6 +11,14 @@ class Shop extends Model
 {
   protected $table = 'shops';
 
+  // EroquentでのDB更新許可設定
+  protected $fillable = [
+    'shop_id',
+    'user_id',
+    'stars',
+    'comment',
+  ];
+
   // ブランドテーブルとのリレーション定義
   public function brands() {
     return $this->belongsToMany('App\Brand', 'brand_shop', 'shop_id', 'brand_id');

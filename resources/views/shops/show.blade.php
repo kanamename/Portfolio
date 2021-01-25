@@ -58,32 +58,87 @@
       <!-- お気に入りしているか -->
       @if($shop_data->is_favorited_by_auth_user())
         <a href="{{ route('shop.unfavorite', ['id' => $shop_data->id]) }}" class="btn btn-success">お気に入り
-      <span class="badge badge-light">×{{ $shop_data->favorites->count() }}人</span></a>
+        <span class="badge badge-light">×{{ $shop_data->favorites->count() }}人</span></a>
       @else
         <a href="{{ route('shop.favorite', ['id' => $shop_data->id]) }}" class="btn btn-secondary">お気に入り
-      <span class="badge badge-light">×{{ $shop_data->favorites->count() }}人</span></a>
+        <span class="badge badge-light">×{{ $shop_data->favorites->count() }}人</span></a>
       @endif
     @else
       <a href="" class="btn btn-secondary disabled mr-2">お気に入り
       <span class="badge badge-light">×{{ $shop_data->favorites->count() }}人</span></a>
-      <span style="color:red;">お気に入りにはログインが必要です。</span>
+      <p class="mt-2" style="color:red;">お気に入りにはログインが必要です。</p>
     @endif
   </div>
 
-  <div class="shop-review my-5">
-    <h2 class="show-shop-title">ショップレビュー</h2>
-    <div class="p-2">
-      <h5>総合評価</h5>
-      <div class="pt-3 pl-3" style="border-style:solid; border-color:#817a7a; border-width:2px;">
-        @foreach($shop_reviews as $shop_review)
-          <div class="mb-3">
-            <p class="m-0">投稿日：<span>{{ $shop_review->created_at->format('Y年m月d日') }}</span></p>
-            <p class="m-0">投稿者：<span>{{ $shop_review->users->name }}</span>さん</p>
-            <p class="m-0">評価：<span>{{ $shop_review->stars }}</span></p>
-            <p class="m-0">コメント：<span>{{ $shop_review->comment }}</span></p>
+  <div class="row mt-2 mt-xl-3 no-gutters">
+    <div class="col">
+      <div class="shop-review my-5">
+        <h2 class="show-shop-title">ショップレビュー</h2>
+
+        <div class="mt-4 mb-4">
+          <!-- ログインしているか -->
+          @if( Auth::check() )
+            <!-- 既にレビュー投稿しているか -->
+            @if(empty($review_flg))
+              <a href="{{ route('review.index', ['id' => $shop_data->id]) }}" class="btn btn-primary">
+                レビューを投稿する
+              </a>
+            @else
+              <a href="{{ route('review.index', ['id' => $shop_data->id]) }}" class="btn btn-secondary disabled">
+                レビューを投稿する
+              </a>
+              <p class="mt-2" style="color:red;">既にレビュー投稿しています。</p>
+            @endif
+          @else
+            <a href="{{ route('review.index', ['id' => $shop_data->id]) }}" class="btn btn-secondary disabled">
+              レビューを投稿する
+            </a>
+            <p class="mt-2" style="color:red;">レビュー投稿にはログインが必要です。</p>
+          @endif
+        </div>
+
+        <div class="mt-2 mt-xl-3 p-2 bg-light" style="border-style:solid; border-color:#d3d3d3; border-width:1px;">
+          <span class="pt2 pl-2" style="font-size: 25px;">総合評価：
+            <span class="star-rating">
+              <span class="star-rating-front" style="width: {{ $comprehensive_review_data_list['stars'] }}%">★★★★★</span>
+              <span class="star-rating-back">★★★★★</span>
+            </span>
+            <span class="review-points">{{ $comprehensive_review_data_list['avg'] }}</span>
+            <span class="text-secondary">（{{ $comprehensive_review_data_list['count'] }}件）</span>
+          </span>
+          <div class="pt-2 pl-2">
+            @foreach($review_data_list as $data)
+              <div class="mb-3 p-2 bg-light" style="border-style:solid; border-color:#d3d3d3; border-width:1px;">
+                <p class="m-0">投稿日：<span>{{ $data->updated_at->format('Y年m月d日') }}</span></p>
+                <p class="m-0">投稿者：<span>{{ $data->users->name }}</span>さん</p>
+                <p class="m-0">評価：
+                  <span class="star-rating" style="font-size: 25px;">
+                    <span class="star-rating-front" style="width: {{ $data->stars * 20 }}%">★★★★★</span>
+                    <span class="star-rating-back">★★★★★</span>
+                  </span>
+                  <span class="review-points">{{ $data->stars }}</span>
+                </p>
+                @if ($data->user_id == Auth::id() )
+                  <p class="m-0">コメント：<span>{{ $data->comment }}</span></p>
+                  <div class="mt-2">
+                    <a class="btn btn-primary btn-sm mr-2" href="{{ route('review.edit', ['id' => $shop_data->id]) }}">編集</a>
+                    <form style="display: inline-block;" method="POST" action="{{ route('review.delete', ['id' => $shop_data->id]) }}">
+                      @csrf
+                      <button class="btn btn-danger btn-sm">削除</button>
+                    </form>
+                  </div>
+                @else
+                  <p class="m-0">コメント：<span>{{ $data->comment }}</span></p>
+                @endif
+              </div>
+            @endforeach
           </div>
-        @endforeach
-      </div>
+        </div>
+        <!-- ぺージリンク -->
+        <div class="d-flex justify-content-center mt-4 mb-4">
+          {{ $review_data_list->appends(request()->input())->links() }}
+        </div>
+      </div>  
     </div>
   </div>  
 </div>

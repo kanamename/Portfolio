@@ -2,25 +2,47 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Shop;
-use App\User;
-use App\Favorite;
+
 use App\Http\Requests\UpdateUserNameRequest;
 use App\Http\Requests\UpdateMailAddressRequest;
 use App\Http\Requests\UpdatePasswordRequest;
 
+use App\Shop;
+use App\User;
+use App\Favorite;
+use App\ReviewShop;
+
 class UsersController extends Controller
 {
-    public function mypage()
+    public function mypage(Request $request)
     {
         $user = Auth::user();
 
         // ユーザがお気に入りしているshopsレコードを取得
         $user_favorites = Favorite::where('user_id', $user->id)->get(['shop_id'])->toArray();
-        $shops = Shop::whereIn('id', $user_favorites)->paginate(5);
-        // $shops = Shop::whereIn('id', $user_favorites)->get();
+        $shops = Shop::whereIn('id', $user_favorites)->get();
+
+        // レビューデータを取得してコレクションへ追加
+        $shops = tap($shops, function ($data_list) {
+            foreach ($data_list as $data) {
+                $shop_reviews = ReviewShop::where('shop_id', $data->id)->get();
+                $data->shop_review_avg = round($shop_reviews->avg('stars'), 1, PHP_ROUND_HALF_UP);
+                $data->shop_review_stars = round($shop_reviews->avg('stars'), 1, PHP_ROUND_HALF_UP) * 20;
+                $data->shop_review_count = $shop_reviews->count();
+            }
+        });
+
+        // ページネーション
+        $shops = new LengthAwarePaginator(
+            $shops->forPage($request->page, 5),
+            $shops->count(),
+            5,
+            null,
+            ['path' => $request->url()]
+        );
 
         return view('users/mypage', compact('user', 'shops'));
     }
@@ -45,7 +67,6 @@ class UsersController extends Controller
     public function updateMailAddressShow()
     {
         $user = Auth::user();
-        
         
         return view('users/mailaddress_edit', compact('user'));
     }

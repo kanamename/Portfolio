@@ -150,7 +150,6 @@ return [
         'password' => 'パスワード',
         'current-password' => '現在のパスワード',
         'new-password' => '新しいパスワード',
-
     ],
 
 ];

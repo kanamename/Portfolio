@@ -8,6 +8,7 @@ use App\User;
 class ReviewShop extends Model
 {
     protected $table = 'review_shop';
+    protected $guarded = [''];
 
     // ユーザテーブルとのリレーション
     public function users() {

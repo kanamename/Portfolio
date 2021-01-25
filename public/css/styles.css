@@ -32,6 +32,24 @@ body {
   object-fit: cover;
 }
 
+a.shop-link {
+  text-decoration: none;
+}
+
+a.shop-link:hover img{
+  opacity: 0.6;
+  transition-duration: 0.3s;
+}
+
+.card-img-wrap{
+  overflow: hidden;
+  background: #000;
+}
+
+.card-img-wrap img{
+  transition-duration: 0.3s;
+}
+
 .show-shop-title{
 	position: relative;
 	overflow: hidden;
@@ -50,4 +68,24 @@ body {
 .show-shop-title:after{
 	border-bottom: 4px solid #817a7a;
 	width: 100%;
+}
+
+.star-rating {
+  position: relative;
+  width: 5em;
+  height: 1em;
+  font-size: 30px;
+}
+.star-rating-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  color: #ffcc33;
+}
+.star-rating-back {
+  color: #ccc;
+}
+.review-points {
+  color: #ecb40a;
 }

@@ -64,11 +64,21 @@
 			<div class="d-flex flex-row flex-wrap">
         @foreach($shops as $shop)
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-3">
-					<a href="{{ action('ShopsController@show', $shop->id) }}" class="card-body text-dark">
+					<a href="{{ action('ShopsController@show', $shop->id) }}" class="shop-link card-body text-dark">
               <div class="card border-secondary">
-                <img class="card-img-top" width="30%" height="60%" src="{{ asset($shop->image_url) }}" alt="ショップ画像" style="max-height:220px;">
+								<div class="card-img-wrap">
+									<img class="card-img-top" width="30%" height="60%" src="{{ asset($shop->image_url) }}" alt="ショップ画像" style="max-height:220px;">
+								</div>
                 <div class="card-content-wrap p-2">
                   <h3 class="card-title text-truncate">{{$shop->shop_name}}</h3>
+									<p class="card-text my-0 text-truncate">
+										<span class="star-rating">
+											<span class="star-rating-front" style="width: {{ $shop->shop_review_stars }}%">★★★★★</span>
+											<span class="star-rating-back">★★★★★</span>
+										</span>
+										<span class="review-points">{{ $shop->shop_review_avg }}</span>
+										<span class="text-secondary">（{{ $shop->shop_review_count }}件）</span>
+									</p>
                   <p class="card-text my-0 text-truncate">価格帯：{{$shop->price_range}}</p>
                   <p class="card-text my-0 text-truncate">住所：{{$shop->address}}</p>
                 </div>

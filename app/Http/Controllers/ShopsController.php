@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 use App\User;
 use App\Shop;
 use App\Brand;
 use App\BrandShop;
 use App\ReviewShop;
+
+use App\Library\BaseClass;
 
 class ShopsController extends Controller
 {
@@ -35,27 +40,64 @@ class ShopsController extends Controller
         }
 
         $count = $query->count();
-        $shops = $query->paginate(6);
+        $shops = $query->get();
+
+        // レビューデータを取得してコレクションへ追加
+        $shops = tap($shops, function ($data_list) {
+            foreach ($data_list as $data) {
+                $shop_reviews = ReviewShop::where('shop_id', $data->id)->get();
+                $data->shop_review_avg = round($shop_reviews->avg('stars'), 1, PHP_ROUND_HALF_UP);
+                $data->shop_review_stars = round($shop_reviews->avg('stars'), 1, PHP_ROUND_HALF_UP) * 20;
+                $data->shop_review_count = $shop_reviews->count();
+            }
+        });
+
+        // ページネーション
+        $shops = new LengthAwarePaginator(
+            $shops->forPage($request->page, 6),
+            $shops->count(),
+            6,
+            null,
+            ['path' => $request->url()]
+        );        
 
         return view('shops.search', compact('shops', 'count', 'request_price_range', 'request_area', 'request_keyword'));
     }
 
     public function show(string $id)
     {
+        // ユーザー情報取得
+        $user = Auth::user();
+        
         // shopsテーブルからショップIDと一致するレコードを取得
         $shop_data = Shop::findOrFail($id);
 
-        $shop_reviews = ReviewShop::where('shop_id', $id)->get();
+        // 総合レビューデータ取得
+        $comprehensive_review_data_list = BaseClass::getReviewData($id);
+
+        // レビューデータ取得
+        $review_data_list = ReviewShop::where('shop_id', $id)
+            ->orderBy('updated_at', 'desc')
+            ->paginate(5);
 
         // brandsテーブルからショップIDと一致するレコードを取得
         $brands = Shop::find($id)->brands;
         // ブランド名をカンマ区切りにする
         $brands = $brands->implode('brand_name', ', ');
 
+        // レビュー投稿しているかチェック
+        $review_flg = "";
+
+        if (isset($user)) {
+            $review_flg = ReviewShop::where('user_id', $user->id)->where('shop_id', $id)->first();
+        }
+
         return view('shops.show',[
              'shop_data' => $shop_data,
              'brands' => $brands,
-             'shop_reviews' => $shop_reviews
+             'review_data_list' => $review_data_list,
+             'comprehensive_review_data_list' => $comprehensive_review_data_list,
+             'review_flg' => $review_flg,
         ]);
     }
 }

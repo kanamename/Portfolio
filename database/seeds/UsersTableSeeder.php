@@ -13,11 +13,11 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        //データを追加
+        // テストユーザー
         User::create([
-            'name' => '蛯名 虹太',
-            'email' => 'ebinakota@example.com',
-            'password' => Hash::make('ebinakota')
+            'name' => '桜木花道',
+            'email' => 'sakuragi@example.com',
+            'password' => Hash::make('sakuragi')
         ]);
 
         factory(User::class, 10)->create();

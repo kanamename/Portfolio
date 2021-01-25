@@ -3,8 +3,6 @@
 ## アプリケーション概要
 
 東京都内にある洋服屋を検索できるサービスです。
-
-**URL**
 <ul>
     <li>http://select-shop-search.work/</li>
 </ul>

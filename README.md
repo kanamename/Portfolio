@@ -10,8 +10,8 @@
 - php7.4.11, Laravel6.20.5
 - MySQL5.7.32
 - Bootstrap4
-- AWS
-- Docker
+- AWS/本番環境
+- Docker,Docker-compose（開発環境）
 
 ## 機能
 

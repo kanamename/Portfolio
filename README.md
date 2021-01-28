@@ -3,6 +3,7 @@
 東京都内にある洋服屋を検索できるサービス
 <ul>
     <li>http://select-shop-search.work/</li>
+    （全ての機能を使用するにはヘッダーの「GUEST LOGIN」ボタンからログインしてください。）
 </ul>
 
 ![Videotogif](https://user-images.githubusercontent.com/68678172/106115259-eaa99080-6193-11eb-9878-d82bd3092329.gif)

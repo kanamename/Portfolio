@@ -5,7 +5,7 @@
     <li>http://select-shop-search.work/</li>
 </ul>
 
-![Videotogif](https://user-images.githubusercontent.com/68678172/106096590-3438b200-6179-11eb-9ed4-7a72795f5342.gif)
+![Videotogif](https://user-images.githubusercontent.com/68678172/106097411-9f36b880-617a-11eb-9ff9-ee8d258c3ff6.gif)
 
 ## 開発環境
 

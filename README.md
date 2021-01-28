@@ -8,7 +8,7 @@
 
 ![Videotogif](https://user-images.githubusercontent.com/68678172/106115259-eaa99080-6193-11eb-9878-d82bd3092329.gif)
 
-## 開発環境
+## 使用技術
 
 - php7.4.11, Laravel6.20.5
 - MySQL5.7.32

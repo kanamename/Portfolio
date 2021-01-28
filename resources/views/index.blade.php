@@ -94,5 +94,30 @@
 <div class="d-flex justify-content-center mt-4 mb-4">
   {{ $shops->links() }}
 </div>
+@endsection
 
+@section('scripts')
+  <!-- フラッシュメッセージ -->
+  @if (session('flash_message'))
+    $(function () {
+      toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": false,
+      "positionClass": "toast-top-center",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "2000",
+      "timeOut": "2000",
+      "extendedTimeOut": "2000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
+      toastr.success('{{ session('flash_message') }}');
+    });
+  @endif
 @endsection

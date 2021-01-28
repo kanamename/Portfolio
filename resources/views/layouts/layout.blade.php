@@ -42,14 +42,9 @@
         </div>
       @else
         <div class="collapse navbar-collapse justify-content-end" id="navbar">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link text-info" href="{{ route('login') }}">LOGIN</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-info" href="{{ route('register') }}">REGISTER</a>
-            </li>
-          </ul>
+          <a href="{{ route('register') }}" class="nav-link text-info">REGISTER</a>
+          <a href="{{ route('login') }}" class="nav-link text-info">LOGIN</a>
+          <a href="{{ route('login.guest') }}" class="nav-link text-info">GUEST LOGIN</a>
         </div>
       @endif
     </nav>

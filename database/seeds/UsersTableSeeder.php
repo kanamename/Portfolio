@@ -15,9 +15,9 @@ class UsersTableSeeder extends Seeder
     {
         // テストユーザー
         User::create([
-            'name' => '桜木花道',
-            'email' => 'sakuragi@example.com',
-            'password' => Hash::make('sakuragi')
+            'name' => 'ゲストユーザー',
+            'email' => 'guest@guest.com',
+            'password' => Hash::make('guest')
         ]);
 
         factory(User::class, 10)->create();

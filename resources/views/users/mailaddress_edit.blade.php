@@ -20,7 +20,7 @@
         <form method="POST" action="{{ route('updateMailAddress') }}">
           @csrf
           <div class="form-group">
-              <input id="email" type="text" value="{{ $user->email }}" class="form-control @error('email') is-invalid @enderror" name="email" autofocus>
+            <input id="email" type="text" value="{{ $user->email }}" class="form-control @error('email') is-invalid @enderror" name="email" autofocus>
           </div>
           <div class="form-group">
             <div class="text-center">

@@ -15,6 +15,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/search', 'ShopsController@search')->name('search');
 Route::get('/search/{id}', 'ShopsController@show')->name('show');
+Route::get('/guest', 'Auth\LoginController@guestLogin')->name('login.guest');
 
 Route::group(['middleware' => 'auth'], function(){
   Route::get('/user/mypage', 'UsersController@mypage')->name('mypage');

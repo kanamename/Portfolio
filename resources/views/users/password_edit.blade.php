@@ -32,11 +32,17 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('送信') }}
-                            </button>
-                        </div>
+                      <div class="text-center">
+                        @if (Auth::id() == 1)
+                          <button type="submit" class="btn btn-secondary disabled" disabled>
+                            {{ __('送信') }}
+                          </button>
+                        @else
+                          <button type="submit" class="btn btn-primary">
+                            {{ __('送信') }}
+                          </button>
+                        @endif
+                      </div>
                     </div>
                 </form>
             </div>

@@ -5,6 +5,8 @@
     <li>http://select-shop-search.work/</li>
 </ul>
 
+![Videotogif](https://user-images.githubusercontent.com/68678172/106096590-3438b200-6179-11eb-9ed4-7a72795f5342.gif)
+
 ## 開発環境
 
 - php7.4.11, Laravel6.20.5

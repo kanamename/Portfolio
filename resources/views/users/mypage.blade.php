@@ -75,6 +75,8 @@
           <span class="font-weight-bold">パスワード</span>
           <a class="btn btn-link" href="{{ route('updatePasswordShow') }}">編集</a>
           <p>パスワードは安全のため表示できません。</p>
+          <span class="font-weight-bold">プロフィール画像</span>
+          <a class="btn btn-link" href="{{ route('updateProfileImageShow') }}">編集</a>
         </div>
       </div>
     </div>

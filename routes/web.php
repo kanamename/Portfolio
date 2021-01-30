@@ -27,6 +27,8 @@ Route::group(['middleware' => 'auth'], function(){
   Route::post('/user/updatemailaddress', 'UsersController@updateMailAddress')->name('updateMailAddress');
   Route::get('/user/updatepassword', 'UsersController@updatePasswordShow')->name('updatePasswordShow');
   Route::post('/user/updatepassword', 'UsersController@updatePassword')->name('updatePassword');
+  Route::get('/user/updateprofileimage', 'UsersController@updateProfileImageShow')->name('updateProfileImageShow');
+  Route::post('/user/updateprofileimage', 'UsersController@updateProfileImage')->name('updateProfileImage');
   Route::get('/search/{id}/review', 'ReviewsController@index')->name('review.index');
   Route::post('/search/{id}/create', 'ReviewsController@create')->name('review.create');
   Route::get('/search/{id}/edit', 'ReviewsController@edit')->name('review.edit');

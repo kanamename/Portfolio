@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+// AWS S3
+use Storage;
 
+// バリデーション
 use App\Http\Requests\UpdateUserNameRequest;
 use App\Http\Requests\UpdateMailAddressRequest;
 use App\Http\Requests\UpdatePasswordRequest;
+use App\Http\Requests\UpdateProfileImageRequest;
 
 use App\Shop;
 use App\User;
@@ -94,6 +98,30 @@ class UsersController extends Controller
         $user->save();
         
         session()->flash('flash_message', 'パスワードを変更しました');
+
+        return redirect()->back();
+    }
+
+    public function updateProfileImageShow()
+    {
+        return view('users/update_profile_edit');
+    }
+    
+    public function updateProfileImage(UpdateProfileImageRequest $request)
+    {
+        $user = Auth::user();
+        $form = $request->all();
+  
+        //s3アップロード開始
+        $image = $request->file('image');
+        // バケットのshop_imgフォルダへアップロード
+        $path = Storage::disk('s3')->putFile('/image/profile', $image, 'public');
+        // アップロードした画像のフルパスを取得
+        $user->image_path = Storage::disk('s3')->url($path);
+  
+        $user->save();
+        
+        session()->flash('flash_message', 'プロフィール画像を変更しました');
 
         return redirect()->back();
     }

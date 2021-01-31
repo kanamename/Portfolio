@@ -13,6 +13,6 @@ class ReviewShop extends Model
     // ユーザテーブルとのリレーション
     public function users() {
         return $this->belongsTo('App\User', 'user_id', 'id')
-            ->select('id', 'name');
+            ->select('id', 'name', 'image_path');
     }
 }

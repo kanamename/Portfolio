@@ -37,3 +37,21 @@
   }
 }
 
+@media screen and (max-width: 767px) {
+  .show-favorite-wrapper {
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .star-rating-wrapper {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .star-rating-wrapper {
+    font-size: 1.5rem;
+  }
+}
+/*# sourceMappingURL=app.css.map */

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
+// AWS S3
+use Storage;
 
 use App\User;
 use App\Shop;
@@ -66,6 +68,9 @@ class ShopsController extends Controller
 
     public function show(string $id)
     {
+        // デフォルトのプロフィール画像パス
+        $default_image_path = Storage::disk('s3')->url('image/profile/no_image.png');
+        
         // ユーザー情報取得
         $user = Auth::user();
         
@@ -98,6 +103,7 @@ class ShopsController extends Controller
              'review_data_list' => $review_data_list,
              'comprehensive_review_data_list' => $comprehensive_review_data_list,
              'review_flg' => $review_flg,
+             'default_image_path' => $default_image_path,
         ]);
     }
 }

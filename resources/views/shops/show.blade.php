@@ -52,7 +52,7 @@
     </div>
   </div>
 
-  <div class="mb-5">
+  <div class="show-favorite-wrapper mb-5">
     <!-- ログインしているか -->
     @if( Auth::check() )
       <!-- お気に入りしているか -->
@@ -98,19 +98,34 @@
         </div>
 
         <div class="mt-2 mt-xl-3 p-2 bg-light" style="border-style:solid; border-color:#d3d3d3; border-width:1px;">
-          <span class="pt2 pl-2" style="font-size: 25px;">総合評価：
-            <span class="star-rating">
-              <span class="star-rating-front" style="width: {{ $comprehensive_review_data_list['stars'] }}%">★★★★★</span>
-              <span class="star-rating-back">★★★★★</span>
+          <div class="star-rating-wrapper">
+            <span class="pt2 pl-2">総合評価：
+              <span class="star-rating">
+                <span class="star-rating-front" style="width: {{ $comprehensive_review_data_list['stars'] }}%">★★★★★</span>
+                <span class="star-rating-back">★★★★★</span>
+              </span>
+              <span class="review-points">{{ $comprehensive_review_data_list['avg'] }}</span>
+              <span class="text-secondary">（{{ $comprehensive_review_data_list['count'] }}件）</span>
             </span>
-            <span class="review-points">{{ $comprehensive_review_data_list['avg'] }}</span>
-            <span class="text-secondary">（{{ $comprehensive_review_data_list['count'] }}件）</span>
-          </span>
+          </div>
           <div class="pt-2 pl-2">
             @foreach($review_data_list as $data)
-              <div class="mb-3 p-2 bg-light" style="border-style:solid; border-color:#d3d3d3; border-width:1px;">
-                <p class="m-0">投稿日：<span>{{ $data->updated_at->format('Y年m月d日') }}</span></p>
-                <p class="m-0">投稿者：<span>{{ $data->users->name }}</span>さん</p>
+              <div class="mb-3 p-3 bg-light" style="border-style:solid; border-color:#d3d3d3; border-width:1px;">
+                <div class="row">
+                  <div class="col-12 col-lg-2 col-xl-1 mb-2">
+                    @if($data->users->image_path == null)
+                      <img class="rounded-circle" src="{{ $default_image_path }}" alt="プロフィール画像" style="width:80px; height:80px;">
+                    @else
+                      <img class="rounded-circle" src="{{ $data->users->image_path }}" alt="プロフィール画像" style="width:80px; height:80px;">
+                    @endif
+                  </div>
+
+                  <div class="col-12 col-lg-10 col-xl-11">
+                    <p class="m-0"><span>{{ $data->users->name }}</span>さん</p>
+                    <p class="m-0">投稿日：<span>{{ $data->updated_at->format('Y年m月d日') }}</span></p>
+                  </div>
+                </div>
+                
                 <p class="m-0">評価：
                   <span class="star-rating" style="font-size: 25px;">
                     <span class="star-rating-front" style="width: {{ $data->stars * 20 }}%">★★★★★</span>

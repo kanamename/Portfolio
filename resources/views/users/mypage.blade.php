@@ -77,6 +77,12 @@
           <p>パスワードは安全のため表示できません。</p>
           <span class="font-weight-bold">プロフィール画像</span>
           <a class="btn btn-link" href="{{ route('updateProfileImageShow') }}">編集</a>
+            <br>
+            @if($user->image_path == null)
+              <img class="border" src="{{ $default_image_path }}" alt="プロフィール画像" style="width:150px; height:150px;">
+            @else
+              <img class="border" src="{{ $user->image_path }}" alt="プロフィール画像" style="width:150px; height:150px;">
+            @endif
         </div>
       </div>
     </div>

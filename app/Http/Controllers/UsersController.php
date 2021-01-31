@@ -24,6 +24,8 @@ class UsersController extends Controller
     public function mypage(Request $request)
     {
         $user = Auth::user();
+        // デフォルトのプロフィール画像パス
+        $default_image_path = Storage::disk('s3')->url('image/profile/no_image.png');
 
         // ユーザがお気に入りしているshopsレコードを取得
         $user_favorites = Favorite::where('user_id', $user->id)->get(['shop_id'])->toArray();
@@ -48,7 +50,7 @@ class UsersController extends Controller
             ['path' => $request->url()]
         );
 
-        return view('users/mypage', compact('user', 'shops'));
+        return view('users/mypage', compact('user', 'shops', 'default_image_path'));
     }
     
     public function updateUserNameShow()

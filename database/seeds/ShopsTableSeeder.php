@@ -25,7 +25,7 @@ class ShopsTableSeeder extends Seeder
             'tel' => '03-6452-5530',
             'url' => 'https://waremo-kou.jp/shop.html',
             'credit_card' => '1',
-            'image_url' => 'image\1_waremokou.jpg',
+            'image_url' => 'https://select-shop-search.s3-ap-northeast-1.amazonaws.com/image/shops/1_waremokou.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -39,7 +39,7 @@ class ShopsTableSeeder extends Seeder
             'tel' => '03-6407-0177',
             'url' => 'https://aiamjohn.com/pages/store',
             'credit_card' => '1',
-            'image_url' => 'image\2_john.jpg',
+            'image_url' => 'https://select-shop-search.s3-ap-northeast-1.amazonaws.com/image/shops/2_john.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -53,7 +53,7 @@ class ShopsTableSeeder extends Seeder
             'tel' => '03-3780-1645',
             'url' => 'http://1ldkshop.com/',
             'credit_card' => '1',
-            'image_url' => 'image\3_1ldk.jpg',
+            'image_url' => 'https://select-shop-search.s3-ap-northeast-1.amazonaws.com/image/shops/3_1ldk.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -67,7 +67,7 @@ class ShopsTableSeeder extends Seeder
             'tel' => '03-5778-9596',
             'url' => 'http://storecarol.com/',
             'credit_card' => '1',
-            'image_url' => 'image\4_carol.jpg',
+            'image_url' => 'https://select-shop-search.s3-ap-northeast-1.amazonaws.com/image/shops/4_carol.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -81,7 +81,7 @@ class ShopsTableSeeder extends Seeder
             'tel' => '03-3770-5002',
             'url' => 'https://www.garden-jp.com/',
             'credit_card' => '1',
-            'image_url' => 'image\no_image.jpg',
+            'image_url' => 'https://select-shop-search.s3-ap-northeast-1.amazonaws.com/image/shops/no_image.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -95,7 +95,7 @@ class ShopsTableSeeder extends Seeder
             'tel' => '03-5728-5690',
             'url' => 'http://roots-to-branches.jp/',
             'credit_card' => '1',
-            'image_url' => 'image\6_roots_to_branches.jpg',
+            'image_url' => 'https://select-shop-search.s3-ap-northeast-1.amazonaws.com/image/shops/6_roots_to_branches.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -109,7 +109,7 @@ class ShopsTableSeeder extends Seeder
             'tel' => '03-6418-9402',
             'url' => 'https://www.graphpaper-tokyo.com/',
             'credit_card' => '1',
-            'image_url' => 'image\no_image.jpg',
+            'image_url' => 'https://select-shop-search.s3-ap-northeast-1.amazonaws.com/image/shops/no_image.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -123,7 +123,7 @@ class ShopsTableSeeder extends Seeder
             'tel' => '03-6806-1619',
             'url' => 'http://amanojak.jp/',
             'credit_card' => '1',
-            'image_url' => 'image\no_image.jpg',
+            'image_url' => 'https://select-shop-search.s3-ap-northeast-1.amazonaws.com/image/shops/no_image.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -137,7 +137,7 @@ class ShopsTableSeeder extends Seeder
             'tel' => '03-6427-2460',
             'url' => 'https://lieu.shop-pro.jp/',
             'credit_card' => '1',
-            'image_url' => 'image\9_lieu.jpg',
+            'image_url' => 'https://select-shop-search.s3-ap-northeast-1.amazonaws.com/image/shops/9_lieu.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -151,7 +151,7 @@ class ShopsTableSeeder extends Seeder
             'tel' => '03-6912-8899',
             'url' => '-',
             'credit_card' => '1',
-            'image_url' => 'image\no_image.jpg',
+            'image_url' => 'https://select-shop-search.s3-ap-northeast-1.amazonaws.com/image/shops/no_image.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -165,7 +165,7 @@ class ShopsTableSeeder extends Seeder
             'tel' => '03-3403-8086',
             'url' => 'https://www.edition-jp.com/',
             'credit_card' => '1',
-            'image_url' => 'image\11_edition.png',
+            'image_url' => 'https://select-shop-search.s3-ap-northeast-1.amazonaws.com/image/shops/11_edition.png',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -179,7 +179,7 @@ class ShopsTableSeeder extends Seeder
             'tel' => '03-6416-1187',
             'url' => 'https://store.moc-o.com/',
             'credit_card' => '1',
-            'image_url' => 'image\no_image.jpg',
+            'image_url' => 'https://select-shop-search.s3-ap-northeast-1.amazonaws.com/image/shops/no_image.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
@@ -193,7 +193,7 @@ class ShopsTableSeeder extends Seeder
             'tel' => '03-6416-5549',
             'url' => 'http://so-shopandhostel.com/',
             'credit_card' => '1',
-            'image_url' => 'image\13_so.jpg',
+            'image_url' => 'https://select-shop-search.s3-ap-northeast-1.amazonaws.com/image/shops/13_so.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

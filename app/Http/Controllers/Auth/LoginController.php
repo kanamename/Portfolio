@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -26,31 +27,32 @@ class LoginController extends Controller
     private const GUEST_USER_ID = 1;
 
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
+     * ログイン処理
      */
-    protected $redirectTo = '/';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
-
     public function guestLogin()
     {
         // id=1 のゲストユーザー情報がDBに存在すれば、ゲストログインする
         if (Auth::loginUsingId(self::GUEST_USER_ID)) {    
-            
-            session()->flash('flash_message', 'ログインしました');
-            
-            return redirect('/');
+            // ログインしたら、トップページへ移動
+            return redirect('/')->with('flash_message', __('ゲストログインしました'));
         }
-        return redirect('/');
+    }
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected function redirectTo() {
+        session()->flash('flash_message', 'ログインしました');
+    }
+
+    /**
+     * ログアウト処理
+     */
+    public function loggedOut(Request $request)
+    {
+        // ログアウトしたら、トップページへ移動
+        return redirect('/')->with('flash_message', __('ログアウトしました'));
     }
 }
